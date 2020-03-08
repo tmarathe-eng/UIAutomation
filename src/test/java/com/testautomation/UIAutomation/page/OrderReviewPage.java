@@ -1,0 +1,25 @@
+package com.testautomation.UIAutomation.page;
+
+import org.apache.log4j.Logger;
+import org.openqa.selenium.WebDriver;
+
+import com.testautomation.UIAutomation.helper.CommonUtil;
+
+public class OrderReviewPage extends BasePage {
+
+	private static final Logger LOG = Logger.getLogger(OrderReviewPage.class);
+	
+	public OrderReviewPage(WebDriver driver) {
+		super(driver);
+	}
+
+	public boolean CompleteTransaction() {
+		if (! ClickAndVerify("btn_finish", "hdng_orderCompletePg", GetElementLocatorVal("txt_orderCompletePgHdng"))) {
+			LOG.error("Could not complete transaction on Order Review page.");
+			CommonUtil.writeMsg(LOG, "ERROR", "Could not complete transaction on Order Review page.", driver,"TransactionCompleteFailure");
+			return false;
+		}
+		CommonUtil.writeMsg(LOG, "INFO", "Transaction completed successfully on Order Review page.", driver,"TransactionCompleteSuccess");
+		return true;
+	}
+}
