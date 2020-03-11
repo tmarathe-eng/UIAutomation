@@ -3,7 +3,7 @@ package com.testautomation.UIAutomation.page;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
-import com.testautomation.UIAutomation.helper.CommonUtil;
+import com.testautomation.UIAutomation.helper.util.CommonUtil;
 
 public class OrderReviewPage extends BasePage {
 
@@ -13,6 +13,13 @@ public class OrderReviewPage extends BasePage {
 		super(driver);
 	}
 
+	/**
+	 * 
+	 * @return true/false
+	 * 
+	 * Click Finish button on Order Review page, verify transaction completes
+	 * Return false if exception occurs
+	 */
 	public boolean CompleteTransaction() {
 		if (! ClickAndVerify("btn_finish", "hdng_orderCompletePg", GetElementLocatorVal("txt_orderCompletePgHdng"))) {
 			LOG.error("Could not complete transaction on Order Review page.");

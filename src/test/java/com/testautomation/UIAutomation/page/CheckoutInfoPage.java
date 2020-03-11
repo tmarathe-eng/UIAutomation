@@ -3,7 +3,7 @@ package com.testautomation.UIAutomation.page;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
-import com.testautomation.UIAutomation.helper.CommonUtil;
+import com.testautomation.UIAutomation.helper.util.CommonUtil;
 
 public class CheckoutInfoPage extends BasePage {
 
@@ -13,6 +13,17 @@ public class CheckoutInfoPage extends BasePage {
 		super(driver);
 	}
 	
+	/**
+	 * 
+	 * @param firstName
+	 * @param lastName
+	 * @param zipCode
+	 * @return true/false
+	 * 
+	 * Enter data for first name, last name and zip code, click continue checkout button,
+	 * navigate to checkout order review page
+	 * Return false if exception occurs
+	 */
 	public boolean FillCustomerInfo(String firstName, String lastName, String zipCode) {
 		EnterData("txtbox_firstname", firstName);
 		EnterData("txtbox_lastname", lastName);

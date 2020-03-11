@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.testautomation.UIAutomation.helper.CommonUtil;
+import com.testautomation.UIAutomation.helper.util.CommonUtil;
 
 public class LoginPage extends BasePage {
 	
@@ -16,6 +16,16 @@ public class LoginPage extends BasePage {
 		wait = new WebDriverWait(driver, 10);
 	}
 	
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 * @return true/false
+	 * 
+	 * Enter username and password data, click login button,
+	 * verify navigation to Product page
+	 * Return false if exception occurs
+	 */
 	public boolean LoginToDemoPage(String username, String password) {
 		//Logging in to demo website using provided username and password
 		EnterData("txtbox_username", username);

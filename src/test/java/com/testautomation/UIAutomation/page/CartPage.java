@@ -3,7 +3,7 @@ package com.testautomation.UIAutomation.page;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
-import com.testautomation.UIAutomation.helper.CommonUtil;
+import com.testautomation.UIAutomation.helper.util.CommonUtil;
 
 public class CartPage extends BasePage {
 
@@ -13,6 +13,13 @@ public class CartPage extends BasePage {
 		super(driver);
 	}
 	
+	/**
+	 * 
+	 * @return true/false
+	 * 
+	 * Click on checkout button, navigate to checkout information page
+	 * Return false if exception occurs
+	 */
 	public boolean CheckOutItems() {
 		if (! ClickAndVerify("btn_checkout", "hdng_checkoutPg", GetElementLocatorVal("txt_checkoutPgHdng"))) { 
 			LOG.error("Could not navigate to Check Out page.");

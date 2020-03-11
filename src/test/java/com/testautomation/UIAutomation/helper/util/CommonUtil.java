@@ -1,4 +1,4 @@
-package com.testautomation.UIAutomation.helper;
+package com.testautomation.UIAutomation.helper.util;
 
 import java.io.File;
 import java.util.HashMap;
@@ -9,62 +9,60 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
-import com.relevantcodes.extentreports.ExtentReports;
-import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
+import com.testautomation.UIAutomation.helper.constants.FilePath;
 
+/**
+ * @author tm0338
+ * Contains methods that help with logging and reporting functionalities
+ */
 public class CommonUtil {
 
-	//Extent Report variables
-	public static ExtentReports report;
-	public static ExtentTest reportLog;
-	public static String successMessage;
-	public static String failureMessage;
-	public static String screenshotFile;
-	
-	
 	//Test data hashmap
-	public static HashMap<String, String[]> testCaseDataMap;
-		
-	//Directory List
-	public static String testResultDir = "test-output/extent-reports";
-	public static String screenshotDir = "test-output/extent-reports/screenshots";
+	public static HashMap<String, String[]> TestCaseDataMap;
 	
+	//Allows to create filename suitable for adding to extent report
+	public static String GetScreenshotForReport(WebDriver driver, String screenshotFilename) {
+		return ExtentReport.ReportLog.addScreenCapture(CommonUtil.TakeScreenshot(driver,screenshotFilename));
+	}
 	
+	//Allows to take screenshot of current browser
 	public static String TakeScreenshot(WebDriver driver,String screenshotFilename) {
 		TakesScreenshot ts = (TakesScreenshot) driver;
 		File source = ts.getScreenshotAs(OutputType.FILE);
-		String screenshotFile = new File(screenshotDir + "/" + screenshotFilename + "_" + System.currentTimeMillis() + ".png").getAbsolutePath();
+		String screenshotFile = new File(FilePath.SCREENSHOT_DIR + "/" + screenshotFilename + "_" + System.currentTimeMillis() + ".png").getAbsolutePath();
 		// Copy temporary screenshot file to screenshot dir
 		try {
 			FileUtils.copyFile(source, new File(screenshotFile));
 		} catch (Exception e) {
-			reportLog.log(LogStatus.WARNING, "Exception occurred while copying screenshot file to its destination.");
+			ExtentReport.ReportLog.log(LogStatus.WARNING, "Exception occurred while copying screenshot file to its destination.");
 		}
 		return screenshotFile;
 	}
 	
+	//Allows to add message at current step in extent report
 	public static void appendMsg(Logger log, String msgType, String msg) {
 		String logMsg = logFormat(msg);
 		String reportMsg = reportFormat(msg);
 		switch(msgType.toUpperCase()) {
 		case "INFO": case "PASS":
 			log.info(logMsg);
-			successMessage =reportMsg;
+			ExtentReport.SuccessMessage =reportMsg;
 			break;
 		case "ERR": case "ERROR": case "FAIL": case "FAILURE": case "FATAL":
 			log.error(logMsg);
-			failureMessage =reportMsg;
+			ExtentReport.FailureMessage =reportMsg;
 			break;
 		case "WARN": case "WARNING": case "SKIP": case "UNKNOWN": default:
 			log.warn(logMsg);
-			successMessage =reportMsg;
-			failureMessage =reportMsg;
+			ExtentReport.SuccessMessage =reportMsg;
+			ExtentReport.FailureMessage =reportMsg;
 			break;
 		}
 		
 	}
 	
+	//Allows to add a test step in extent report
 	public static void writeMsg(Logger log,String msgType,String msg){
 		LogStatus logStatus = LogStatus.INFO;
 		String reportMsg = reportFormat(msg);
@@ -104,9 +102,10 @@ public class CommonUtil {
 			log.info(logMsg);
 		}
 		
-		reportLog.log(logStatus, reportMsg);
+		ExtentReport.ReportLog.log(logStatus, reportMsg);
 	}
 
+	//Allows to add a test step in extent report with screenshot
 	public static void writeMsg(Logger log,String msgType,String msg,WebDriver driver, String screenshotFilename){
 		LogStatus logStatus = LogStatus.INFO;
 		String reportMsg = reportFormat(msg);
@@ -146,14 +145,15 @@ public class CommonUtil {
 			log.info(logMsg);
 		}
 		
-		reportLog.log(logStatus, reportMsg + reportLog.addScreenCapture(TakeScreenshot(driver,screenshotFilename)));
+		ExtentReport.ReportLog.log(logStatus, reportMsg + ExtentReport.ReportLog.addScreenCapture(TakeScreenshot(driver,screenshotFilename)));
 	}
 
-	
+	//Makes console log more readable by applying start tabs
 	public static String logFormat(String msg){
 		return msg.replaceAll("\n", "\n\t\t\t\t\t\t");
 	}
 	
+	//Formats text to be html compatible
 	public static String reportFormat(String msg){
 		return msg.replaceAll("\n", "<br>").replaceAll("\t", "&emsp;");
 	}

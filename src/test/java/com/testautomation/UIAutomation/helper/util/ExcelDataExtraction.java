@@ -1,4 +1,4 @@
-package com.testautomation.UIAutomation.helper;
+package com.testautomation.UIAutomation.helper.util;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,6 +9,10 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+/**
+ * @author tm0338
+ * Contains methods to help with pulling test related data from excel files
+ */
 public class ExcelDataExtraction {
 
 	private static final Logger LOG = Logger.getLogger(ExcelDataExtraction.class);

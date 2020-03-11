@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.testautomation.UIAutomation.helper.CommonUtil;
+import com.testautomation.UIAutomation.helper.util.CommonUtil;
 
 public class ProductsPage extends BasePage {
 
@@ -18,6 +18,21 @@ public class ProductsPage extends BasePage {
 		wait = new WebDriverWait(driver, 10);
 	}
 
+	/**
+	 * 
+	 * @param productName
+	 * @param firstName
+	 * @param lastName
+	 * @param zipCode
+	 * @return true/false
+	 * 
+	 * Performs following tasks, if anyone fails, returns false
+	 * 1. Add products to cart that contains param1
+	 * 2. Go to cart
+	 * 3. Click checkout button
+	 * 4. Fill in checkout information (param2, param3, param4)
+	 * 5. Complete transaction by clicking Finish button
+	 */
 	public boolean PurchaseProducts(String productName, String firstName, String lastName, String zipCode) {
 		if (!AddProductsToCart(productName)) { return false; }
 		if (!GoToCart()) { return false;}
@@ -27,6 +42,14 @@ public class ProductsPage extends BasePage {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @param productName
+	 * @return true/false
+	 * 
+	 * Iterates over each products listed on Products page and 
+	 * adds products to cart that contain given param1
+	 */
 	public boolean AddProductsToCart(String productName) {
 		//Get product element list
 		List<WebElement> productList = GetElementList("list_products");

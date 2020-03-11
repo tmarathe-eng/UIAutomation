@@ -2,16 +2,16 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="TestSuite" duration-ms="10825" started-at="2020-03-08T02:14:09Z" finished-at="2020-03-08T02:14:20Z">
+  <suite name="TestSuite" duration-ms="14849" started-at="2020-03-11T00:09:26Z" finished-at="2020-03-11T00:09:41Z">
     <groups>
     </groups>
-    <test name="PurchaseProductsTest" duration-ms="10825" started-at="2020-03-08T02:14:09Z" finished-at="2020-03-08T02:14:20Z">
+    <test name="PurchaseProductsTest" duration-ms="14849" started-at="2020-03-11T00:09:26Z" finished-at="2020-03-11T00:09:41Z">
       <class name="com.testautomation.UIAutomation.test.PurchaseProductsTest">
-        <test-method status="PASS" signature="setup()[pri:0, instance:com.testautomation.UIAutomation.test.PurchaseProductsTest@4a87761d]" name="setup" is-config="true" duration-ms="6539" started-at="2020-03-08T02:14:09Z" finished-at="2020-03-08T02:14:16Z">
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.testautomation.UIAutomation.test.PurchaseProductsTest@4a87761d]" name="setup" is-config="true" duration-ms="8722" started-at="2020-03-11T00:09:26Z" finished-at="2020-03-11T00:09:35Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="PASS" signature="StartTest(java.lang.reflect.Method, [Ljava.lang.Object;)[pri:0, instance:com.testautomation.UIAutomation.test.PurchaseProductsTest@4a87761d]" name="StartTest" is-config="true" duration-ms="1" started-at="2020-03-08T02:14:16Z" finished-at="2020-03-08T02:14:16Z">
+        <test-method status="PASS" signature="StartTest(java.lang.reflect.Method, [Ljava.lang.Object;)[pri:0, instance:com.testautomation.UIAutomation.test.PurchaseProductsTest@4a87761d]" name="StartTest" is-config="true" duration-ms="2" started-at="2020-03-11T00:09:35Z" finished-at="2020-03-11T00:09:35Z">
           <params>
             <param index="0">
               <value>
@@ -27,11 +27,11 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- StartTest -->
-        <test-method status="PASS" signature="BuyAllTshirtsTest()[pri:0, instance:com.testautomation.UIAutomation.test.PurchaseProductsTest@4a87761d]" name="BuyAllTshirtsTest" duration-ms="3128" started-at="2020-03-08T02:14:16Z" finished-at="2020-03-08T02:14:19Z">
+        <test-method status="PASS" signature="BuyAllTshirtsTest()[pri:0, instance:com.testautomation.UIAutomation.test.PurchaseProductsTest@4a87761d]" name="BuyAllTshirtsTest" duration-ms="4923" started-at="2020-03-11T00:09:35Z" finished-at="2020-03-11T00:09:40Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BuyAllTshirtsTest -->
-        <test-method status="PASS" signature="StopTest(org.testng.ITestResult, [Ljava.lang.Object;)[pri:0, instance:com.testautomation.UIAutomation.test.PurchaseProductsTest@4a87761d]" name="StopTest" is-config="true" duration-ms="378" started-at="2020-03-08T02:14:19Z" finished-at="2020-03-08T02:14:19Z">
+        <test-method status="PASS" signature="StopTest(org.testng.ITestResult, [Ljava.lang.Object;)[pri:0, instance:com.testautomation.UIAutomation.test.PurchaseProductsTest@4a87761d]" name="StopTest" is-config="true" duration-ms="392" started-at="2020-03-11T00:09:40Z" finished-at="2020-03-11T00:09:40Z">
           <params>
             <param index="0">
               <value>
@@ -47,7 +47,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- StopTest -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.testautomation.UIAutomation.test.PurchaseProductsTest@4a87761d]" name="tearDown" is-config="true" duration-ms="759" started-at="2020-03-08T02:14:19Z" finished-at="2020-03-08T02:14:20Z">
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.testautomation.UIAutomation.test.PurchaseProductsTest@4a87761d]" name="tearDown" is-config="true" duration-ms="792" started-at="2020-03-11T00:09:40Z" finished-at="2020-03-11T00:09:41Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->

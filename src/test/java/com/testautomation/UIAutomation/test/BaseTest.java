@@ -1,13 +1,10 @@
 package com.testautomation.UIAutomation.test;
 
-import static com.testautomation.UIAutomation.helper.CommonUtil.failureMessage;
-import static com.testautomation.UIAutomation.helper.CommonUtil.report;
-import static com.testautomation.UIAutomation.helper.CommonUtil.reportLog;
-import static com.testautomation.UIAutomation.helper.CommonUtil.successMessage;
-import static com.testautomation.UIAutomation.helper.CommonUtil.testCaseDataMap;
-
-import java.io.File;
-import java.lang.reflect.Method;
+import static com.testautomation.UIAutomation.helper.constants.FilePath.CHROME_DRIVER_FILE;
+import static com.testautomation.UIAutomation.helper.util.CommonUtil.GetScreenshotForReport;
+import static com.testautomation.UIAutomation.helper.util.CommonUtil.TestCaseDataMap;
+import static com.testautomation.UIAutomation.helper.util.ExtentReport.finishTestReporting;
+import static com.testautomation.UIAutomation.helper.util.ExtentReport.startTestReporting;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -16,12 +13,15 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
-import com.relevantcodes.extentreports.LogStatus;
-import com.testautomation.UIAutomation.helper.CommonUtil;
-import com.testautomation.UIAutomation.helper.ExcelDataExtraction;
+import com.testautomation.UIAutomation.helper.util.ExcelDataExtraction;
+import com.testautomation.UIAutomation.helper.util.ExtentReport;
 import com.testautomation.UIAutomation.page.BasePage;
 import com.testautomation.UIAutomation.page.LoginPage;
 
+/**
+ * @author tm0338
+ * Contains methods to start and stop webdriver, reporting and logging in to portal
+ */
 public class BaseTest {
 
 	private static final Logger LOG = Logger.getLogger(BaseTest.class);
@@ -30,73 +30,64 @@ public class BaseTest {
 
 	@BeforeClass
 	public void setup() {
-		
+		LOG.debug("Setting up reporting in BaseTest class.");
 		startTestReporting("Test_Setup", "Setting up test execution environment and logging in.");
-		successMessage = "Logged in successfully.";
-		failureMessage = "Login failed.";
+		ExtentReport.SuccessMessage = "Logged in successfully.";
+		ExtentReport.FailureMessage = "Login failed.";
 		
+		//Load and initialize Selenium WebDriver object
+		LOG.debug("Initializing WebDriver");
+		initializeDriver();
+		
+		//Populate Element Map
+		LOG.debug("Getting page element maps from excel file.");
+		if (!(new BasePage(driver).PopulateElementMap())) { 
+			finishTestReporting(ITestResult.FAILURE,"Could not populate element map from excel file. See logs for detail.<br>" + 
+					GetScreenshotForReport(driver, "Test_Setup") );
+			driver.quit();
+		}
+		
+		//Populate Test Case Data
+		LOG.debug("Getting test case metadata from excel file.");
+		TestCaseDataMap = ExcelDataExtraction.GetTestCaseDataMap();
+		
+		//Login to portal
+		LOG.debug("Logging in as standard_user");
+		loginToPortal();
+		
+		
+		
+	}
+	
+	private void initializeDriver() {
 		try {
-			System.setProperty("webdriver.chrome.driver",
-					new File("src/test/resources/drivers").getAbsolutePath() + "\\chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver",CHROME_DRIVER_FILE);
 			driver = new ChromeDriver();
 			driver.manage().window().maximize();
 			driver.get("https://www.saucedemo.com/");
 		} catch(Exception e) {
 			finishTestReporting(ITestResult.FAILURE,"Could not navigate to main website. See logs for detail.<br>" + 
-							reportLog.addScreenCapture(CommonUtil.TakeScreenshot(driver,"Test_Setup")) );
+					GetScreenshotForReport(driver, "Test_Setup") );
 		}
-		//Populate Element Map
-		if (!(new BasePage(driver).PopulateElementMap())) { 
-			finishTestReporting(ITestResult.FAILURE,"Could not populate element map from excel file. See logs for detail.<br>" + 
-					reportLog.addScreenCapture(CommonUtil.TakeScreenshot(driver,"Test_Setup")) );
-			driver.quit();
-		}
-		
-		testCaseDataMap = ExcelDataExtraction.GetTestCaseDataMap();
-		
+	}
+	
+	public boolean loginToPortal() {
 		//Login as standard_user
 		if (!(new LoginPage(driver).LoginToDemoPage("standard_user", "secret_sauce"))) {
 			finishTestReporting(ITestResult.FAILURE,"Could not login using given credentials.<br>" + 
-					reportLog.addScreenCapture(CommonUtil.TakeScreenshot(driver,"Test_Setup")) );
+					GetScreenshotForReport(driver, "Test_Setup") );
 			driver.quit();
+			return false;
 		} else {
 			finishTestReporting(ITestResult.SUCCESS,"Successfully logged in to website.<br>" + 
-					reportLog.addScreenCapture(CommonUtil.TakeScreenshot(driver,"Test_Setup")) );
+					GetScreenshotForReport(driver, "Test_Setup") );
 		}
-		
-		
-	}
-	
-	public void startTestReporting(String testCaseName, String testCaseDescription) {
-		reportLog = report.startTest(testCaseName, testCaseDescription);
-	}
-	
-	public void initializeTest(Method m, Logger TEST_LOG) {
-		startTestReporting(testCaseDataMap.get(m.getName())[0], testCaseDataMap.get(m.getName())[1]);
-		successMessage = "";
-		failureMessage = "";
-		TEST_LOG.debug("Test Case ID: " + testCaseDataMap.get(m.getName())[0]);
-		TEST_LOG.debug("Test Case Description: " + testCaseDataMap.get(m.getName())[1]);
-		TEST_LOG.debug("Test Case Success Message: " + testCaseDataMap.get(m.getName())[2]);
-		TEST_LOG.debug("Test Case Failure Message: " + testCaseDataMap.get(m.getName())[3]);
-	}
-
-	public void finishTestReporting(int testResultStatus, String resultMsg) {
-		if (testResultStatus == ITestResult.SUCCESS) { reportLog.log(LogStatus.PASS, resultMsg); }
-		if (testResultStatus == ITestResult.FAILURE) { reportLog.log(LogStatus.FAIL, resultMsg); }
-		report.endTest(reportLog);
-		report.flush();
-	}
-	
-	public void reportTestResults(ITestResult result) {
-		String s = reportLog.addScreenCapture(CommonUtil.TakeScreenshot(driver,result.getName()));
-		finishTestReporting(result.getStatus(), (result.getStatus() == ITestResult.SUCCESS) ?
-								(testCaseDataMap.get(result.getMethod().getMethodName())[2] + s) : 
-								(testCaseDataMap.get(result.getMethod().getMethodName())[3] + s) );
+		return true;
 	}
 	
 	@AfterClass
 	public void tearDown() {
+		LOG.debug("Closing driver object.");
 		driver.quit();
 	}
 }
