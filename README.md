@@ -26,6 +26,6 @@ In constants package, there is FilePath class which stores path for all files an
 In util package, there are utility classes to implement methods for logging, reporting and excel data extraction.
 
 4. Apart from these packages, there are following configuration files in the framework:
-    • /src/main/resources/log4j.properties - Provides logging framework configuration using log4j
-    • testng.xml - Contains configuration for running the project as TestNG Suite
-    • pom.xml - Contains maven configuration to manage dependencies, and maintain maven runtime profiles    
+ - /src/main/resources/log4j.properties - Provides logging framework configuration using log4j
+ - testng.xml - Contains configuration for running the project as TestNG Suite
+ - pom.xml - Contains maven configuration to manage dependencies, and maintain maven runtime profiles    
