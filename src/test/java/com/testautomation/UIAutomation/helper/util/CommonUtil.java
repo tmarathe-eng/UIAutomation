@@ -11,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 
 import com.relevantcodes.extentreports.LogStatus;
 import com.testautomation.UIAutomation.helper.constants.FilePath;
+import static com.testautomation.UIAutomation.helper.util.ExtentReport.*;
 
 /**
  * @author tm0338
@@ -23,7 +24,7 @@ public class CommonUtil {
 	
 	//Allows to create filename suitable for adding to extent report
 	public static String GetScreenshotForReport(WebDriver driver, String screenshotFilename) {
-		return ExtentReport.ReportLog.addScreenCapture(CommonUtil.TakeScreenshot(driver,screenshotFilename));
+		return ReportLog.addScreenCapture(CommonUtil.TakeScreenshot(driver,screenshotFilename));
 	}
 	
 	//Allows to take screenshot of current browser
@@ -35,7 +36,7 @@ public class CommonUtil {
 		try {
 			FileUtils.copyFile(source, new File(screenshotFile));
 		} catch (Exception e) {
-			ExtentReport.ReportLog.log(LogStatus.WARNING, "Exception occurred while copying screenshot file to its destination.");
+			ReportLog.log(LogStatus.WARNING, "Exception occurred while copying screenshot file to its destination.");
 		}
 		return screenshotFile;
 	}

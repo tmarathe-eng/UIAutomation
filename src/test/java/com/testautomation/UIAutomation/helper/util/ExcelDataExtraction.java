@@ -1,6 +1,5 @@
 package com.testautomation.UIAutomation.helper.util;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -9,6 +8,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import static com.testautomation.UIAutomation.helper.constants.FilePath.TEST_DATA_FILE;
+
 /**
  * @author tm0338
  * Contains methods to help with pulling test related data from excel files
@@ -16,8 +17,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class ExcelDataExtraction {
 
 	private static final Logger LOG = Logger.getLogger(ExcelDataExtraction.class);
-
-	private static String xlTestDataMapFile = new File("src/test/resources").getAbsolutePath() + "/Test_Case_Data_Maps.xlsx";
 
 	@SuppressWarnings("resource") //Workbook is closed by calling CloseWorkbook method
 	private static XSSFSheet OpenWorkbook(String wkbookName, String sheetName) {
@@ -83,10 +82,10 @@ public class ExcelDataExtraction {
 	}
 	
 	public static HashMap<String, String[]> GetElementMap() {
-		return PopulateMap(xlTestDataMapFile, "ElementMap",2,new int[] {3,4,0,1});
+		return PopulateMap(TEST_DATA_FILE, "ElementMap",2,new int[] {3,4,0,1});
 	}
 
 	public static HashMap<String, String[]> GetTestCaseDataMap() {
-		return PopulateMap(xlTestDataMapFile, "TestCaseData", 0 , new int[] {1,2,3,4});
+		return PopulateMap(TEST_DATA_FILE, "TestCaseData", 0 , new int[] {1,2,3,4});
 	}
 }

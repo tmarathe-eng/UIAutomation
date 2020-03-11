@@ -5,10 +5,10 @@
     <classes>
       <class name="com.testautomation.UIAutomation.test.PurchaseProductsTest">
         <methods>
-          <include name="StopTest"/>
+          <include name="buyAllTshirtsTest"/>
           <include name="setup"/>
-          <include name="StartTest"/>
-          <include name="BuyAllTshirtsTest"/>
+          <include name="startTest"/>
+          <include name="stopTest"/>
           <include name="tearDown"/>
         </methods>
       </class> <!-- com.testautomation.UIAutomation.test.PurchaseProductsTest -->

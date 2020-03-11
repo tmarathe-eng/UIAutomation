@@ -14,22 +14,33 @@ public class CheckoutInfoPage extends BasePage {
 	}
 	
 	/**
-	 * 
+	 * Enter data for first name, last name and zip code, return false if exception occurs
 	 * @param firstName
 	 * @param lastName
 	 * @param zipCode
 	 * @return true/false
 	 * 
-	 * Enter data for first name, last name and zip code, click continue checkout button,
-	 * navigate to checkout order review page
-	 * Return false if exception occurs
+	 * 
 	 */
-	public boolean FillCustomerInfo(String firstName, String lastName, String zipCode) {
-		EnterData("txtbox_firstname", firstName);
-		EnterData("txtbox_lastname", lastName);
-		EnterData("txtbox_zipCode", zipCode);
+	public boolean fillCustomerInfo(String firstName, String lastName, String zipCode) {
+		try {
+		enterData("txtbox_firstname", firstName);
+		enterData("txtbox_lastname", lastName);
+		enterData("txtbox_zipCode", zipCode);
 		CommonUtil.writeMsg(LOG, "INFO", "Entered customer information on Checkout Info page.", driver,"EnteredCustomerInfo");
-		if(!ClickAndVerify("btn_continueCheckout", "hdng_orderReviewPg", GetElementLocatorVal("txt_orderReviewPgHdng"))) {
+		} catch(Exception e) {
+			CommonUtil.writeMsg(LOG, "ERROR", "Error occurred while entering customer information on Checkout Info page.\n" + e.getMessage(), driver,"EnteredCustomerInfo");
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * Click continue checkout button, navigate to checkout order review page, return false if exception occurs
+	 * @return
+	 */
+	public boolean clickContinueToCheckoutButton() {
+		if(!clickAndVerify("btn_continueCheckout", "hdng_orderReviewPg", getElementLocatorVal("txt_orderReviewPgHdng"))) {
 			LOG.error("Could not navigate to Order Review Page after entering customer information.");
 			CommonUtil.writeMsg(LOG, "ERROR","Could not navigate to Order Review Page after entering customer information.", driver,"OrderOverviewFailure");
 			return false;

@@ -20,8 +20,8 @@ public class OrderReviewPage extends BasePage {
 	 * Click Finish button on Order Review page, verify transaction completes
 	 * Return false if exception occurs
 	 */
-	public boolean CompleteTransaction() {
-		if (! ClickAndVerify("btn_finish", "hdng_orderCompletePg", GetElementLocatorVal("txt_orderCompletePgHdng"))) {
+	public boolean completeTransaction() {
+		if (! clickAndVerify("btn_finish", "hdng_orderCompletePg", getElementLocatorVal("txt_orderCompletePgHdng"))) {
 			LOG.error("Could not complete transaction on Order Review page.");
 			CommonUtil.writeMsg(LOG, "ERROR", "Could not complete transaction on Order Review page.", driver,"TransactionCompleteFailure");
 			return false;

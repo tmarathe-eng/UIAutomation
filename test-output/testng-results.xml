@@ -2,52 +2,52 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="TestSuite" duration-ms="14849" started-at="2020-03-11T00:09:26Z" finished-at="2020-03-11T00:09:41Z">
+  <suite name="TestSuite" duration-ms="15981" started-at="2020-03-11T18:46:48Z" finished-at="2020-03-11T18:47:04Z">
     <groups>
     </groups>
-    <test name="PurchaseProductsTest" duration-ms="14849" started-at="2020-03-11T00:09:26Z" finished-at="2020-03-11T00:09:41Z">
+    <test name="PurchaseProductsTest" duration-ms="15981" started-at="2020-03-11T18:46:48Z" finished-at="2020-03-11T18:47:04Z">
       <class name="com.testautomation.UIAutomation.test.PurchaseProductsTest">
-        <test-method status="PASS" signature="setup()[pri:0, instance:com.testautomation.UIAutomation.test.PurchaseProductsTest@4a87761d]" name="setup" is-config="true" duration-ms="8722" started-at="2020-03-11T00:09:26Z" finished-at="2020-03-11T00:09:35Z">
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.testautomation.UIAutomation.test.PurchaseProductsTest@1961d75a]" name="setup" is-config="true" duration-ms="9005" started-at="2020-03-11T18:46:48Z" finished-at="2020-03-11T18:46:57Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="PASS" signature="StartTest(java.lang.reflect.Method, [Ljava.lang.Object;)[pri:0, instance:com.testautomation.UIAutomation.test.PurchaseProductsTest@4a87761d]" name="StartTest" is-config="true" duration-ms="2" started-at="2020-03-11T00:09:35Z" finished-at="2020-03-11T00:09:35Z">
+        <test-method status="PASS" signature="startTest(java.lang.reflect.Method, [Ljava.lang.Object;)[pri:0, instance:com.testautomation.UIAutomation.test.PurchaseProductsTest@1961d75a]" name="startTest" is-config="true" duration-ms="13" started-at="2020-03-11T18:46:58Z" finished-at="2020-03-11T18:46:58Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[public void com.testautomation.UIAutomation.test.PurchaseProductsTest.BuyAllTshirtsTest()]]>
+                <![CDATA[public void com.testautomation.UIAutomation.test.PurchaseProductsTest.buyAllTshirtsTest()]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[[Ljava.lang.Object;@a23a01d]]>
+                <![CDATA[[Ljava.lang.Object;@6993fa61]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- StartTest -->
-        <test-method status="PASS" signature="BuyAllTshirtsTest()[pri:0, instance:com.testautomation.UIAutomation.test.PurchaseProductsTest@4a87761d]" name="BuyAllTshirtsTest" duration-ms="4923" started-at="2020-03-11T00:09:35Z" finished-at="2020-03-11T00:09:40Z">
+        </test-method> <!-- startTest -->
+        <test-method status="PASS" signature="buyAllTshirtsTest()[pri:0, instance:com.testautomation.UIAutomation.test.PurchaseProductsTest@1961d75a]" name="buyAllTshirtsTest" duration-ms="5646" started-at="2020-03-11T18:46:58Z" finished-at="2020-03-11T18:47:03Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- BuyAllTshirtsTest -->
-        <test-method status="PASS" signature="StopTest(org.testng.ITestResult, [Ljava.lang.Object;)[pri:0, instance:com.testautomation.UIAutomation.test.PurchaseProductsTest@4a87761d]" name="StopTest" is-config="true" duration-ms="392" started-at="2020-03-11T00:09:40Z" finished-at="2020-03-11T00:09:40Z">
+        </test-method> <!-- buyAllTshirtsTest -->
+        <test-method status="PASS" signature="stopTest(org.testng.ITestResult, [Ljava.lang.Object;)[pri:0, instance:com.testautomation.UIAutomation.test.PurchaseProductsTest@1961d75a]" name="stopTest" is-config="true" duration-ms="425" started-at="2020-03-11T18:47:03Z" finished-at="2020-03-11T18:47:04Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=BuyAllTshirtsTest status=SUCCESS method=PurchaseProductsTest.BuyAllTshirtsTest()[pri:0, instance:com.testautomation.UIAutomation.test.PurchaseProductsTest@4a87761d] output={null}]]]>
+                <![CDATA[[TestResult name=buyAllTshirtsTest status=SUCCESS method=PurchaseProductsTest.buyAllTshirtsTest()[pri:0, instance:com.testautomation.UIAutomation.test.PurchaseProductsTest@1961d75a] output={null}]]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[[Ljava.lang.Object;@a23a01d]]>
+                <![CDATA[[Ljava.lang.Object;@6993fa61]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- StopTest -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.testautomation.UIAutomation.test.PurchaseProductsTest@4a87761d]" name="tearDown" is-config="true" duration-ms="792" started-at="2020-03-11T00:09:40Z" finished-at="2020-03-11T00:09:41Z">
+        </test-method> <!-- stopTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.testautomation.UIAutomation.test.PurchaseProductsTest@1961d75a]" name="tearDown" is-config="true" duration-ms="853" started-at="2020-03-11T18:47:04Z" finished-at="2020-03-11T18:47:04Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->

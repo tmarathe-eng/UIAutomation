@@ -28,9 +28,9 @@ public class LoginPage extends BasePage {
 	 */
 	public boolean LoginToDemoPage(String username, String password) {
 		//Logging in to demo website using provided username and password
-		EnterData("txtbox_username", username);
-		EnterData("txtbox_password", password);
-		if (! ClickAndVerify("btn_login","hdng_productPg", GetElementLocatorVal("txt_productPgHdng"))) {
+		enterData("txtbox_username", username);
+		enterData("txtbox_password", password);
+		if (! clickAndVerify("btn_login","hdng_productPg", getElementLocatorVal("txt_productPgHdng"))) {
 			CommonUtil.writeMsg(LOG, "ERROR", "Product page not displayed after logging in as " + username + ".", driver, "LoginFailure");
 			return false;
 		}

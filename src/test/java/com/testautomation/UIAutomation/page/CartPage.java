@@ -14,14 +14,12 @@ public class CartPage extends BasePage {
 	}
 	
 	/**
-	 * 
-	 * @return true/false
-	 * 
 	 * Click on checkout button, navigate to checkout information page
 	 * Return false if exception occurs
+	 * @return true/false
 	 */
-	public boolean CheckOutItems() {
-		if (! ClickAndVerify("btn_checkout", "hdng_checkoutPg", GetElementLocatorVal("txt_checkoutPgHdng"))) { 
+	public boolean checkOutItems() {
+		if (! clickAndVerify("btn_checkout", "hdng_checkoutPg", getElementLocatorVal("txt_checkoutPgHdng"))) { 
 			LOG.error("Could not navigate to Check Out page.");
 			CommonUtil.writeMsg(LOG, "ERROR", "Could not navigate to Check Out page.", driver,"CheckoutFailure");
 			return false; 

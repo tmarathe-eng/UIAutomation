@@ -19,48 +19,23 @@ public class ProductsPage extends BasePage {
 	}
 
 	/**
-	 * 
-	 * @param productName
-	 * @param firstName
-	 * @param lastName
-	 * @param zipCode
-	 * @return true/false
-	 * 
-	 * Performs following tasks, if anyone fails, returns false
-	 * 1. Add products to cart that contains param1
-	 * 2. Go to cart
-	 * 3. Click checkout button
-	 * 4. Fill in checkout information (param2, param3, param4)
-	 * 5. Complete transaction by clicking Finish button
-	 */
-	public boolean PurchaseProducts(String productName, String firstName, String lastName, String zipCode) {
-		if (!AddProductsToCart(productName)) { return false; }
-		if (!GoToCart()) { return false;}
-		if (!(new CartPage(driver).CheckOutItems())) { return false; }
-		if (!(new CheckoutInfoPage(driver).FillCustomerInfo(firstName, lastName, zipCode))) { return false; }
-		if (!(new OrderReviewPage(driver).CompleteTransaction())) { return false; }
-		return true;
-	}
-
-	/**
-	 * 
-	 * @param productName
-	 * @return true/false
-	 * 
+	 * Returns true if adding products to cart is successful
 	 * Iterates over each products listed on Products page and 
-	 * adds products to cart that contain given param1
+	 * adds products to cart that contain given productName
+	 * @param productName
+	 * @return true/false
 	 */
-	public boolean AddProductsToCart(String productName) {
+	public boolean addProductsToCart(String productName) {
 		//Get product element list
-		List<WebElement> productList = GetElementList("list_products");
+		List<WebElement> productList = getElementList("list_products");
 		int itemsAddedToCart = 0;
 				
 		for (int i=0;i<productList.size();i++) {
 			//Get product name on (i+1)th row
-			String itemName = FindElementAtIndex("txt_productName", i+1).getText();
+			String itemName = findElementAtIndex("txt_productName", i+1).getText();
 			if (itemName.contains(productName)) {
 				itemsAddedToCart++;
-				if (! ClickElementAtIndexAndVerify("btn_addToCart", i+1, "txt_cartItemCount", "" + itemsAddedToCart + "")) {
+				if (! clickElementAtIndexAndVerify("btn_addToCart", i+1, "txt_cartItemCount", "" + itemsAddedToCart + "")) {
 					CommonUtil.writeMsg(LOG, "ERROR", "Item '" + itemName + "' could not be added to cart.", driver,"AddToCartFailure");
 					return false;
 				}

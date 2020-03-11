@@ -13,5 +13,8 @@ public class FilePath {
 	
 	//Chrome driver file
 	public static final String CHROME_DRIVER_FILE = new File("src/test/resources/drivers").getAbsolutePath() + "\\chromedriver.exe";
+	
+	//Test data file
+	public static final String TEST_DATA_FILE = new File("src/test/resources").getAbsolutePath() + "/Test_Case_Data_Maps.xlsx";
 
 }
